@@ -28,19 +28,19 @@ public class AuthenticationFilter implements Filter {
 
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-//		HttpServletRequest req = (HttpServletRequest) request;
-//		HttpServletResponse res = (HttpServletResponse) response;
-//		String uri = req.getRequestURI();
-//		
-//		HttpSession session = req.getSession(true);
-//		
-//		if (session.getAttribute("user") == null && !RouteValidator.isAuthRoute(uri)) {
-//			System.out.println("Redirect");
-//			res.sendRedirect("login.jsp");
-//		}else {
-//			chain.doFilter(request, response);
-//		}
-		chain.doFilter(request, response);
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpServletResponse res = (HttpServletResponse) response;
+		String uri = req.getRequestURI();
+		
+		HttpSession session = req.getSession(true);
+		
+		if (session.getAttribute("user") == null && !RouteValidator.isAuthRoute(uri)) {
+			System.out.println("Redirect");
+			res.sendRedirect("login.jsp");
+		}else {
+			chain.doFilter(request, response);
+		}
+//		chain.doFilter(request, response);
 	}
 
 
