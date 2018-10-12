@@ -32,7 +32,7 @@ public class AuthenticationFilter implements Filter {
 		HttpServletResponse res = (HttpServletResponse) response;
 		String uri = req.getRequestURI();
 		
-		HttpSession session = req.getSession(false);
+		HttpSession session = req.getSession(true);
 		System.out.println(uri);
 		System.out.println(RouteValidator.isAuthRoute(uri));
 		if (session.getAttribute("user") == null && !RouteValidator.isAuthRoute(uri)) {
