@@ -4,7 +4,7 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
-
+import com.mysql.jdbc.Driver;
 public class DBConnectionManager {
 	private Connection connection;
 	static Properties prop = new Properties();
@@ -19,11 +19,10 @@ public class DBConnectionManager {
 			String username = prop.getProperty("dbUser");
 			String password = prop.getProperty("dbPassword");
 			String db = prop.getProperty("db");
-			Class.forName("com.mysql.jdbc.Driver");
 			// Setup the connection with the DB
 			if(!username.isEmpty() && !password.isEmpty() && !db.isEmpty()) {
-				Class.forName("com.mysql.jdbc.Driver");
 			      // Setup the connection with the DB
+				 Class.forName("com.mysql.jdbc.Driver");
 			      connection = DriverManager
 				          .getConnection("jdbc:mysql://localhost:3306/"+db+"?"
 				              + "user="+username+"&password="+password);
