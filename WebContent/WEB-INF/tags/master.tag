@@ -2,6 +2,7 @@
 <%@attribute name="title"%>
 <%@attribute name="head" fragment="true" %>
 <%@attribute name="body" fragment="true" %>
+<%@attribute name="script" fragment="true" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,14 +12,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
  	<!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+	     
 	<title>${title}</title>
     <jsp:invoke fragment="head"/>
 </head>
 <body>
 	<nav>
 		<div class="nav-wrapper">
-			<a href="#" class="brand-logo">Secured</a>
+			<a href="#" class="brand-logo">Securely</a>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
 			</ul>
 		</div>
@@ -28,16 +32,15 @@
 		<div class="container">
             <div class="row">
               <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                <h5 class="white-text">Securely</h5>
+                <p class="grey-text text-lighten-4">A platform that makes online transaction with ease.</p>
               </div>
               <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Blog</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Pricing</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">FAQ</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Contact</a></li>
                 </ul>
               </div>
             </div>
@@ -48,5 +51,6 @@
             </div>
           </div>
 	</footer>
+	<jsp:invoke fragment="script"/>
 </body>
 </html>
