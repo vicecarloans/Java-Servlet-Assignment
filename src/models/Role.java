@@ -14,7 +14,7 @@ public class Role {
         	try {
         	    DBConnectionManager dbmng = new DBConnectionManager();
         	    con = dbmng.connectDb();
-        	    ps = con.prepareStatement("insert into \"roles\" (\"roleName\") values(?)");
+        	    ps = con.prepareStatement("insert into roles (\"roleName\") values(?)");
         	    ps.setString(1, role);
         	    status = ps.executeUpdate();
         	    dbmng.disconnectDb();

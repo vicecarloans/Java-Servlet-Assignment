@@ -25,7 +25,7 @@ public class DBConnectionManager {
 				 Class.forName("com.mysql.jdbc.Driver");
 			      connection = DriverManager
 				          .getConnection("jdbc:mysql://localhost:3306/"+db+"?"
-				              + "user="+username+"&password="+password);
+				              + "user="+username+"&password="+password+"&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
 			      return connection;
 			}
 			else {

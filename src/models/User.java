@@ -16,7 +16,7 @@ public class User implements UserDAO {
         	    DBConnectionManager dbmng = new DBConnectionManager();
         	    con = dbmng.connectDb();
         	    ps = con.prepareStatement(
-        		    "insert into \"users\" (\"firstname\",\"lastname\",\"address\",\"email\",\"password\") values(?,?,?,?,?)");
+        		    "insert into users (firstname, lastname, address,email,password) values(?,?,?,?,?)");
         	    ps.setString(1, u.getFirstName());
         	    ps.setString(2, u.getLastName());
         	    ps.setString(3, u.getAddress());

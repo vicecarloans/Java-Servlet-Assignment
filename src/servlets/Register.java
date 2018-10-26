@@ -21,21 +21,21 @@ public class Register extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String firstName = request.getParameter("firstName");
-		String lastName = request.getParameter("lastName");
-		String address = request.getParameter("address");
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		UserDTO u = new UserDTO();
-		u.setFirstName(firstName);
-		u.setLastName(lastName);
-		u.setAddress(address);
-		u.setEmail(email);
-		u.setPassword(password);
-		User userManager = new User();
-		int status = userManager.insertUser(u);
-		System.out.print(status);
-		response.sendRedirect("confirmation.jsp");
+    		String firstName = request.getParameter("firstName");
+    		String lastName = request.getParameter("lastName");
+    		String address = request.getParameter("address");
+    		String email = request.getParameter("email");
+    		String password = request.getParameter("password");
+    		UserDTO u = new UserDTO();
+    		u.setFirstName(firstName);
+    		u.setLastName(lastName);
+    		u.setAddress(address);
+    		u.setEmail(email);
+    		u.setPassword(password);	
+    		User userManager = new User();
+    		int status = userManager.insertUser(u);
+    		System.out.print(status);
+    		response.sendRedirect("confirmation.jsp");
 	}
 
 }

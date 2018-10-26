@@ -18,7 +18,7 @@ public class UserRole{
         	    DBConnectionManager dbmng = new DBConnectionManager();
         	    con = dbmng.connectDb();
         	    ps = con.prepareStatement(
-        		    "insert into \"userroles\" (\"userID\",\"roleID\") values(?,?)");
+        		    "insert into userroles (\"userID\",\"roleID\") values(?,?)");
         	    ps.setInt(1, userID);
         	    ps.setInt(2, roleID);
         	    status = ps.executeUpdate();
