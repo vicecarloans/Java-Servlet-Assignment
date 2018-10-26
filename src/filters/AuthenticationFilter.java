@@ -13,39 +13,36 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import utils.RouteValidator;
 
-
 @WebFilter("/AuthenticationFilter")
 public class AuthenticationFilter implements Filter {
 
-
     public AuthenticationFilter() {
-        
+
     }
 
-	public void destroy() {
-		
-	}
+    public void destroy() {
 
+    }
 
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest req = (HttpServletRequest) request;
-		HttpServletResponse res = (HttpServletResponse) response;
-		String uri = req.getRequestURI();
-		
-		HttpSession session = req.getSession(true);
-		
-		if (session.getAttribute("user") == null && !RouteValidator.isAuthRoute(uri)) {
-			System.out.println("Redirect");
-			res.sendRedirect("login.jsp");
-		}else {
-			chain.doFilter(request, response);
-		}
-//		chain.doFilter(request, response);
-	}
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+        	    throws IOException, ServletException {
+        	HttpServletRequest req = (HttpServletRequest) request;
+        	HttpServletResponse res = (HttpServletResponse) response;
+        	String uri = req.getRequestURI();
+        
+        	HttpSession session = req.getSession(true);
+        
+        	if (session.getAttribute("user") == null && !RouteValidator.isAuthRoute(uri)) {
+        	    System.out.println("Redirect");
+        	    res.sendRedirect("login.jsp");
+        	} else {
+        	    chain.doFilter(request, response);
+        	}
+        	// chain.doFilter(request, response);
+    }
 
+    public void init(FilterConfig fConfig) throws ServletException {
 
-	public void init(FilterConfig fConfig) throws ServletException {
-
-	}
+    }
 
 }
