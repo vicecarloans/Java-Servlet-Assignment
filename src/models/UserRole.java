@@ -41,9 +41,9 @@ public class UserRole{
         			int uID = rs.getInt(1);
         		User userManager = new User();
         		UserDTO user = userManager.getUserById(uID);
-        		if (user != null) {
-        		    userList.add(user);
-        		}
+	        		if (user != null) {
+	        		    userList.add(user);
+	        		}
         	    }
         
         	} catch (Exception e) {
@@ -51,7 +51,26 @@ public class UserRole{
         	}
         	return userList;
     }
+    public String getRole(int userID) {
+    	String role = null;
+    	try {
+    	    DBConnectionManager dbmng = new DBConnectionManager();
+    	    con = dbmng.connectDb();
+    	    ps = con.prepareStatement("select * from userroles where userID=?");
+    	    ps.setInt(1, userID);
+    	    ResultSet rs = ps.executeQuery();
+    	    while (rs.next()) {
+    			int roleID = rs.getInt(2);
+	    		Role r = new Role();
+	    		role = r.getRole(roleID);
+    	    }
     
+    	} catch (Exception e) {
+    	    e.printStackTrace();
+    	}
+		return role;
+    	
+    }
     
     
     

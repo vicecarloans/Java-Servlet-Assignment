@@ -33,7 +33,7 @@ public class Role {
         	    ps.setInt(1, id);
         	    ResultSet rs = ps.executeQuery();
         	    while (rs.next()) {
-        		roleName = rs.getString(2);
+        	    	roleName = rs.getString(2);
         	    }
         	} catch (Exception e) {
         	    e.printStackTrace();
