@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import services.DBConnectionManager;
-import utils.PasswordHash;
 public class User implements UserDAO {
 	static Connection con;
 	static PreparedStatement ps;
@@ -19,7 +18,7 @@ public class User implements UserDAO {
 			ps.setString(2, u.getLastName());
 			ps.setString(3, u.getAddress());
 			ps.setString(4, u.getEmail());
-			ps.setString(5, PasswordHash.getSaltedHash(u.getPassword()));
+			ps.setString(5, u.getPassword());
 			status=ps.executeUpdate();
 			dbmng.disconnectDb();
 		}catch(Exception e) {
@@ -38,8 +37,8 @@ public class User implements UserDAO {
 			ps.setString(1, email);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				String encryptedPassword = rs.getString(5);
-				if(PasswordHash.check(password, encryptedPassword)) {
+				String dbPassword = rs.getString(5);
+				if(password.equals(dbPassword)) {
 					u.setFirstName(rs.getString(1));
 					u.setLastName(rs.getString(2));
 					u.setAddress(rs.getString(3));
