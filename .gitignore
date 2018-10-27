@@ -49,3 +49,4 @@ dependency-reduced-pom.xml
 
 #Config.properties
 WebContent/WEB-INF/classes/config.properties
+WebContent/WEB-INF/classes/database.sql

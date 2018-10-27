@@ -12,14 +12,14 @@ public class UserRole{
     static Connection con;
     static PreparedStatement ps;
 
-    public int insertUserRole(int userID, int roleID) {
+    public int insertUserRole(String userID, int roleID) {
         	int status = 0;
         	try {
         	    DBConnectionManager dbmng = new DBConnectionManager();
         	    con = dbmng.connectDb();
         	    ps = con.prepareStatement(
-        		    "insert into userroles (\"userID\",\"roleID\") values(?,?)");
-        	    ps.setInt(1, userID);
+        		    "insert into userroles (userID,roleID) values(?,?)");
+        	    ps.setString(1, userID);
         	    ps.setInt(2, roleID);
         	    status = ps.executeUpdate();
         	    dbmng.disconnectDb();

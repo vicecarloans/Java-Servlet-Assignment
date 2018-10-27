@@ -22,11 +22,23 @@
 <body>
 	<nav>
 		<div class="nav-wrapper teal lighten-2">
-			<a href="dashboard.jsp" class="brand-logo">Securely</a>
-			<ul id="nav-mobile" class="right hide-on-med-and-down">
-				<li style="margin-right:10px;">Welcome, <%= session.getAttribute("user") %> </li>
-				<li><a href="signout">Sign Out</a></li>
-			</ul>
+			<% if(session.getAttribute("user") != null){ %>
+				<ul id="nav-mobile" class="left hide-on-med-and-down">
+					<li><a href="TBA.jsp">Tab 1</a></li>
+					<li><a href="TBA.jsp">Tab 2</a></li>
+					<li><a href="TBA.jsp">Tab 3</a></li>
+					<li><a href="TBA.jsp">Tab 4</a></li>
+				</ul>
+				<a href="dashboard.jsp" class="brand-logo center">Securely</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					
+					<li style="margin-right:10px;">Welcome, <%= session.getAttribute("user") %> </li>
+					<li><a href="signout">Sign Out</a></li>
+					
+				</ul>
+			<% } else {%>
+				<a href="login.jsp" class="brand-logo center">Securely</a>
+			<% } %>
 		</div>
 	</nav>
     <jsp:invoke fragment="body"/>
@@ -39,10 +51,10 @@
               </div>
               <div class="col l4 offset-l2 s12">
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Blog</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Pricing</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">FAQ</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Contact</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#">Blog</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#">Pricing</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#">FAQ</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#">Contact</a></li>
                 </ul>
               </div>
             </div>

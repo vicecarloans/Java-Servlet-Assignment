@@ -17,16 +17,17 @@ public class User implements UserDAO {
     			DBConnectionManager dbmng = new DBConnectionManager();
         	    con = dbmng.connectDb();
         	    ps = con.prepareStatement(
-        		    "insert into users (id,firstname, lastname, address,email,password, role, activate) values(?,?,?,?,?,?,?,?)");
+        		    "insert into users (id,firstname, lastname, address,email,password) values(?,?,?,?,?,?)");
         	    ps.setString(1, u.getUUID());
         	    ps.setString(2, u.getFirstName());
         	    ps.setString(3, u.getLastName());
         	    ps.setString(4, u.getAddress());
         	    ps.setString(5, u.getEmail());
         	    ps.setString(6, u.getPassword());
-        	    ps.setString(7, "user");
-        	    ps.setBoolean(8, false);
         	    status = ps.executeUpdate();
+        	    //Also insert into user role table
+        	    UserRole urManager = new UserRole();
+        	    status = urManager.insertUserRole(u.getUUID(), 2);
         	    dbmng.disconnectDb();
     		}
     	} catch (Exception e) {
@@ -42,7 +43,7 @@ public class User implements UserDAO {
     	try {
     	    DBConnectionManager dbmng = new DBConnectionManager();
     	    con = dbmng.connectDb();
-    	    ps = con.prepareStatement("select firstname, lastname, address, email, password, role, activate from users where email=?");
+    	    ps = con.prepareStatement("select firstname, lastname, address, email, password, activate from users where email=?");
     	    ps.setString(1, email);
     	    ResultSet rs = ps.executeQuery();
     	    while (rs.next()) {
@@ -53,7 +54,7 @@ public class User implements UserDAO {
 	    		    u.setLastName(rs.getString(2));
 	    		    u.setAddress(rs.getString(3));
 	    		    u.setEmail(rs.getString(4));
-	    		    u.setActivate(rs.getBoolean(7));
+	    		    u.setActivate(rs.getBoolean(6));
     			}
     	    }
     	    dbmng.disconnectDb();

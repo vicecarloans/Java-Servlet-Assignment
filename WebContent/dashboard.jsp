@@ -4,7 +4,7 @@
 
 <t:master>
 	<jsp:attribute name="body">
-		<div class="container" style="min-height: 70vh; padding: 10px;">
+		<div class="container" style="min-height: 75vh; padding: 10px;">
 		<h3 class="center-align">Dashboard</h3>
 			<div class="row valign-wrapper">
 				

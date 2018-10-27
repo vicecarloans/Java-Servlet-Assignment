@@ -33,8 +33,8 @@ public class AuthenticationFilter implements Filter {
         	HttpSession session = req.getSession(true);
         
         	if (session.getAttribute("user") == null && !RouteValidator.isAuthRoute(uri)) {
-        	    System.out.println("Redirect");
-        	    res.sendRedirect("login.jsp");
+        	    req.setAttribute("message", "You must sign in first");
+        	    req.getRequestDispatcher("login.jsp").forward(req, res);
         	}
         	else if(session.getAttribute("user") != null && RouteValidator.isAuthRoute(uri)){
         		res.sendRedirect("dashboard.jsp");
