@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import models.User;
 import models.UserDTO;
-
+import utils.Mailer;
+import utils.EmailContent;
 @WebServlet({ "/Register", "/register" })
 public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -34,8 +35,20 @@ public class Register extends HttpServlet {
     		u.setPassword(password);	
     		User userManager = new User();
     		int status = userManager.insertUser(u);
-    		System.out.print(status);
-    		response.sendRedirect("confirmation.jsp");
+    		if(status == 0) {
+    			request.setAttribute("message","Email already exists");
+    			request.getRequestDispatcher("register.jsp").forward(request, response);
+    		}else {
+    			Mailer m = new Mailer();
+
+    			boolean isSent = m.send(u.getEmail(),"Account Confirmation",EmailContent.getEmailContent(u.getFirstName(),u.getLastName(), u.getEmail(), u.getUUID()));
+    			if(isSent) {
+        			response.sendRedirect("confirmation.jsp");
+    			}else {
+        			request.setAttribute("message","Oops something went wrong with your email. We can't send the confirmation.");
+        			request.getRequestDispatcher("register.jsp").forward(request, response);
+    			}
+    		}
 	}
 
 }

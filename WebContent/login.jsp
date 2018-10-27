@@ -15,6 +15,7 @@
 			
 			<div class="row">
 				<h3 class="center-align">Login</h3>
+				<h6 class="center-align red-text">${message}</h6>
 				<form method="POST" action="auth" class="col s12" id="loginForm">
 				    <div class="row">
 				    	<div class="input-field col s12">
@@ -28,7 +29,7 @@
 				    		<label for="password">Password</label>
 				    	</div>
 				    </div>
-				    <div class="g-recaptcha" data-sitekey="6LdF63YUAAAAAE_rrnulFDgPAdIPK93i7J3MZum5"></div>
+				    <div class="g-recaptcha" id="recaptcha_check_empty" data-callback="recaptchaCallback" data-sitekey="6LdF63YUAAAAAE_rrnulFDgPAdIPK93i7J3MZum5"></div>
 			    	<div class="row">
 				   		<div class="center-align">
 				   			<p>Don't have an account? <a href="register.jsp"> Register with us today</a></p>
@@ -44,7 +45,12 @@
 	</jsp:attribute>
 	<jsp:attribute name="script">
 		<script>
+			
 			$(window).ready(function(){
+				var captchaToken = null;
+				function recaptchaCallback(token) { 
+				    captchaToken=token;
+				}
 				$.validator.addMethod("password", function(value,element){
 					return this.optional(element) || /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-]).{8,}$/.test(value)
 				}, "Password must be 6-12 length, contains at least one capital letter and 1 special character")
@@ -72,7 +78,8 @@
 					    }
 					},
 					submitHandler: function(form) {
-					    if(!form.valid()){
+				
+					    if(!form.valid() || captchaToken != null){
 					    	return false;
 					    }
 						form.submit();

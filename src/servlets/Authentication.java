@@ -6,7 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import services.DBConnectionManager;
+import javax.servlet.http.HttpSession;
+
+import models.User;
+import models.UserDTO;
 
 @WebServlet("/auth")
 public class Authentication extends HttpServlet {
@@ -18,15 +21,23 @@ public class Authentication extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
 		
-	}
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			DBConnectionManager dbmng = new DBConnectionManager();
-			dbmng.connectDb();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		User UserManager = new User();
+		UserDTO user = UserManager.getUser(email, password);
+		if(user.getEmail() == null) {
+			request.setAttribute("message", "Invalid username/password");
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+		}else {
+			if(!user.getActivate()) {
+				request.setAttribute("message", "Please activate your account via email");
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+			}else {
+				HttpSession session = request.getSession();
+				session.setAttribute("user", user.getFirstName() + " " + user.getLastName());
+				response.sendRedirect("dashboard.jsp");
+			}
 		}
 	}
 

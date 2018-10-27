@@ -1,12 +1,18 @@
 package models;
-
+import java.util.UUID;
 
 public class UserDTO {
+	private UUID uuid = UUID.randomUUID();
 	private String firstName;
 	private String lastName;
 	private String address;
 	private String email;
 	private String password;
+	private boolean isActivated; 
+	
+	public String getUUID() {
+		return uuid.toString();
+	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -45,6 +51,12 @@ public class UserDTO {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public void setActivate(boolean isActive) {
+		this.isActivated = isActive;
+	}
+	public boolean getActivate() {
+		return this.isActivated;
 	}
 
 

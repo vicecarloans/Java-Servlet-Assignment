@@ -35,8 +35,11 @@ public class AuthenticationFilter implements Filter {
         	if (session.getAttribute("user") == null && !RouteValidator.isAuthRoute(uri)) {
         	    System.out.println("Redirect");
         	    res.sendRedirect("login.jsp");
-        	} else {
-        	    chain.doFilter(request, response);
+        	}
+        	else if(session.getAttribute("user") != null && RouteValidator.isAuthRoute(uri)){
+        		res.sendRedirect("dashboard.jsp");
+        	}else {
+        		chain.doFilter(req, res);
         	}
         	// chain.doFilter(request, response);
     }

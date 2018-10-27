@@ -14,21 +14,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-	<script src='https://www.google.com/recaptcha/api.js'></script>
+	<script src='https://www.google.com/recaptcha/api.js?onload=recaptchaCallback&render=explicit"' async defer></script>
 	     
 	<title>${title}</title>
     <jsp:invoke fragment="head"/>
 </head>
 <body>
 	<nav>
-		<div class="nav-wrapper">
-			<a href="#" class="brand-logo">Securely</a>
+		<div class="nav-wrapper teal lighten-2">
+			<a href="dashboard.jsp" class="brand-logo">Securely</a>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li style="margin-right:10px;">Welcome, <%= session.getAttribute("user") %> </li>
+				<li><a href="signout">Sign Out</a></li>
 			</ul>
 		</div>
 	</nav>
     <jsp:invoke fragment="body"/>
-   	<footer class="page-footer">
+   	<footer class="page-footer teal lighten-2">
 		<div class="container">
             <div class="row">
               <div class="col l6 s12">

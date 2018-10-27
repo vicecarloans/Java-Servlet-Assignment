@@ -4,7 +4,6 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
-import com.mysql.jdbc.Driver;
 public class DBConnectionManager {
 	private Connection connection;
 	static Properties prop = new Properties();

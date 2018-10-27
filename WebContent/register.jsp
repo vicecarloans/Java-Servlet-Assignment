@@ -7,6 +7,7 @@
 		<div class="container" style="min-height: 70vh;">
 			<div class="row">
 				<h3 class="center-align">Register</h3>
+				<h6 class="center-align red-text">${message}</h6>
 				<form method="POST" action="register" class="col s12" id="registerForm">
 					<div class="row">
 				        <div class="input-field col s6">
