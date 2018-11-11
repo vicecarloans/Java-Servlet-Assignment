@@ -1,3 +1,11 @@
+/*
+ * Project: Securely
+ * Assignment: Assignment 1
+ * Author: Huy Dam, Duc Nguyen, Allan Martinez
+ * Student Number: 101085183, 101095506, 101094202
+ * Date: Sunday, Oct 28th, 2018
+ * Description: Connection Manager to Database MySQL
+ * */
 package services;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,7 +32,7 @@ public class DBConnectionManager {
 				 Class.forName("com.mysql.jdbc.Driver");
 			      connection = DriverManager
 				          .getConnection("jdbc:mysql://localhost:3306/"+db+"?"
-				              + "user="+username+"&password="+password+"&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+				              + "user="+username+"&password="+password+"&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true");
 			      return connection;
 			}
 			else {

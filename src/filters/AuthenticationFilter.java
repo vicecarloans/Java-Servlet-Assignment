@@ -1,3 +1,13 @@
+/*
+ * Project: Securely
+ * Assignment: Assignment 1
+ * Author: Huy Dam, Duc Nguyen, Allan Martinez
+ * Student Number: 101085183, 101095506, 101094202
+ * Date: Sunday, Oct 28th, 2018
+ * Description: Filter for authentication, if not authenticated, cannot go to Dashboard. If authenticated, 
+ * cannot go back to register/login
+ * */
+
 package filters;
 
 import java.io.IOException;
